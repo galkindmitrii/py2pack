@@ -17,7 +17,7 @@ License:        Unknown
 Group:          Development/Languages/Python
 Source:         {{ source_url|replace(version, '%{version}') }}
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildArch:      noarch 
+BuildArch:      x86_64 
 BuildRequires:  python34-devel {%- if requires_python %} = {{ requires_python }} {% endif %}
 {%- for req in requires %}
 BuildRequires:  python34-{{ req|replace('(','')|replace(')','') }}
@@ -63,6 +63,7 @@ rm -rf %{buildroot}
 {%- for script in scripts %}
 %{_bindir}/{{ script }}
 {%- endfor %}
+%{python3_sitearch}/*
 
 %changelog
 
